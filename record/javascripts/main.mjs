@@ -276,6 +276,9 @@ title: '${name}'
 mp3: /audio/${recording.name}.mp3
 ogg: /audio/${recording.name}.ogg
 ---
+
+<audio controls src="{{.Params.mp3}}"></audio>
+
 ${main.join('\n')}
 `;
     createFile(fileName, body, images, cleanName, recording);
