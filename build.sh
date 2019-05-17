@@ -17,4 +17,4 @@ cp -r node_modules/@editorjs/link/dist/bundle.js record/javascripts/editorjs/lin
 cp -r node_modules/@editorjs/simple-image/dist/bundle.js record/javascripts/editorjs/simple-image.js
 
 mkdir dist
-cp record/ -R dist
+cp record/* -R dist
