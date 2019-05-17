@@ -21,6 +21,11 @@
     const description = url.searchParams.get('text');
     let data = {};
     let editor;
+    let config = {
+      apiKey: "AIzaSyDCxJm4JBrX2sqRBENPdbeCMYXMXZb1SYc",
+      authDomain: "podcastinabox-77f89.firebaseapp.com",
+      projectId: "podcastinabox-77f89"
+    };
 
     const initEditor = (imageBlob) => {
       const editorElement = document.getElementById('editor');
@@ -71,11 +76,7 @@
     initEditor();
 
     const auth = async () => {
-      var config = {
-        apiKey: "AIzaSyBRVhojhh2btgeWnOW1klF7GT_l6GBUa9M",
-        authDomain: "paulkinlanme.firebaseapp.com",
-        projectId: "paulkinlanme"
-      };
+      
 
       firebase.initializeApp(config);
       var provider = new firebase.auth.GithubAuthProvider();
