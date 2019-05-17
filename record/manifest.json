@@ -1,0 +1,18 @@
+{
+    "name": "Podcast in a box",
+    "short_name": "Record Podcast",
+    "start_url": "/?homescreen=1",
+    "theme_color": "#000000",
+    "background_color": "#000000",
+    "icons": [ {
+        "sizes": "192x192",
+        "src": "/images/mipmap-xxxhdpi/ic_launcher.png",
+        "type": "image/png"
+    },
+    {
+        "sizes": "512x512",
+        "src": "/images/web_hi_res_512.png",
+        "type": "image/png"
+    }],
+    "display": "standalone"
+}
