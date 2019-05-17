@@ -1,0 +1,24 @@
+{
+    "name": "podcastinabox-editor",
+    "devDependencies": {
+      "@editorjs/code": "^2.0.0",
+      "@editorjs/editorjs": "^2.0.0",
+      "@editorjs/header": "^2.0.0",
+      "@editorjs/link": "^2.0.0",
+      "@editorjs/list": "^1.0.0",
+      "@editorjs/paragraph": "^2.0.0",
+      "@editorjs/quote": "^2.0.0",
+      "@editorjs/raw": "^2.0.0",
+      "@editorjs/simple-image": "^1.0.0",
+      "@now/static-build": "*",
+      "file-drop-element": "^0.2.0",
+      "js-yaml": "^3.13.1",
+      "now": "^15.0.0",
+      "sw-runtime-caching": "0.0.22"
+    },
+    "dependencies": {
+      "commander": "^2.19.0",
+      "octokat": "^0.10.0"
+    }
+  }
+  

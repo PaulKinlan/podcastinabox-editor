@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "podcastinabox",
+  "name": "podcastinabox-editor",
   "builds": [
     {
       "src": "build.sh",
