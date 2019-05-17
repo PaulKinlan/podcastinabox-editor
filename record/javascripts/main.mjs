@@ -57,8 +57,6 @@ const initEditor = (imageBlob) => {
 initEditor();
 
 const auth = async () => {
-  
-
   firebase.initializeApp(config);
   var provider = new firebase.auth.GithubAuthProvider();
   provider.addScope('repo');
@@ -91,7 +89,7 @@ const createFile = async (filename, data, images, commitMessage, recording) => {
     const github = new Octokat({ 'token': token });
     const markdownPath = `site/content/en/${filename}.markdown`.toLowerCase();
   
-    let repo = await github.repos('paulkinlan', 'paul.kinlan.me').fetch();
+    let repo = await github.repos('paulkinlan', 'podcastinabox').fetch();
     let main = await repo.git.refs('heads/main').fetch();
     let treeItems = [];
 
