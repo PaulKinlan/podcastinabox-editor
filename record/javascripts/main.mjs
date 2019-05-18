@@ -90,7 +90,7 @@ const createFile = async (filename, data, images, commitMessage, recording) => {
     const markdownPath = `site/content/en/${filename}.markdown`.toLowerCase();
   
     let repo = await github.repos('paulkinlan', 'podcastinabox').fetch();
-    let main = await repo.git.refs('heads/main').fetch();
+    let main = await repo.git.refs('heads/master').fetch();
     let treeItems = [];
 
     for(let image of images) {
