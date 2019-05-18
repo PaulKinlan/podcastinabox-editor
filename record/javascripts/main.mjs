@@ -106,7 +106,7 @@ const createFile = async (filename, data, images, commitMessage, recording) => {
 
     if (recording) {
       let audioGit = await repo.git.blobs.create({ content: recording.data, encoding: 'base64' });
-      let audioPath = `site/static/audio/${recording.name}`.toLowerCase();
+      let audioPath = `site/static/audio/${recording.name}.${recording.extension}`.toLowerCase();
       treeItems.push({
         path: audioPath,
         sha: audioGit.sha,
@@ -254,7 +254,8 @@ onload = async () => {
     const fileName = `${dateParts[0]}-${cleanName}`;
     let images = [];
     // At some point we will have multiple files.
-    recording.name = `${fileName}.webm`;
+    recording.name = `${fileName}`;
+    recording.extension = '.webm'
     recording.data = recording.data.replace(/([^,]+),/, "");
       
     const main = editorData.blocks.map((cur) => {
@@ -274,7 +275,7 @@ slug: ${cleanName.toLowerCase()}
 date: ${dateParts.join('T')}
 title: '${name}'
 mp3: /audio/${recording.name}.mp3
-ogg: /audio/${recording.name}.ogg
+webm: /audio/${recording.name}.webm
 ---
 
 ${main.join('\n')}
