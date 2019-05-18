@@ -87,7 +87,7 @@ const createFile = async (filename, data, images, commitMessage, recording) => {
   try {
     const token = localStorage.getItem('accessToken');
     const github = new Octokat({ 'token': token });
-    const markdownPath = `site/content/en/${filename}.markdown`.toLowerCase();
+    const markdownPath = `site/content/${filename}.markdown`.toLowerCase();
   
     let repo = await github.repos('paulkinlan', 'podcastinabox').fetch();
     let main = await repo.git.refs('heads/master').fetch();
