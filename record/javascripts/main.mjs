@@ -274,8 +274,8 @@ onload = async () => {
 slug: ${cleanName.toLowerCase()}
 date: ${dateParts.join('T')}
 title: '${name}'
-mp3: /audio/${recording.name}.mp3
-webm: /audio/${recording.name}.webm
+mp3: /audio/${recording.name.toLowerCase()}.mp3
+webm: /audio/${recording.name.toLowerCase()}.webm
 ---
 
 ${main.join('\n')}
