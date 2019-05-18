@@ -255,7 +255,7 @@ onload = async () => {
     let images = [];
     // At some point we will have multiple files.
     recording.name = `${fileName}`;
-    recording.extension = '.webm'
+    recording.extension = 'webm'
     recording.data = recording.data.replace(/([^,]+),/, "");
       
     const main = editorData.blocks.map((cur) => {
