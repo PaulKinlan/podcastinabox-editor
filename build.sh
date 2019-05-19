@@ -1,9 +1,5 @@
 #! /bin/bash
 
-yum install -y wget
-
-git submodule update --init --recursive -j 8
-
 npm install
 
 cp -r node_modules/@editorjs/editorjs/dist record/javascripts/editorjs/
