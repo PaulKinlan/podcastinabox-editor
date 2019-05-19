@@ -1,5 +1,6 @@
 const url = new URL(location);
 const description = url.searchParams.get('text');
+
 let data = {};
 let editor;
 let config = {
@@ -63,10 +64,11 @@ const auth = async () => {
 
   try {
     const result = await firebase.auth().signInWithPopup(provider);
+
     // This gives you a GitHub Access Token. You can use it to access the GitHub API.
     var token = result.credential.accessToken;
     localStorage.setItem('accessToken', token);
-    localStorage.setItem('user', result.user);
+    localStorage.setItem('user', JSON.stringify(result.user.toJSON()));
     logToToast(`Welcome ${result.user}`);
     return result;
   } catch (error) {
@@ -83,13 +85,19 @@ const auth = async () => {
   }
 };
 
-const createFile = async (filename, data, images, commitMessage, recording) => {
+const createFile = async (repositoryUrl, filename, data, images, commitMessage, recording) => {
   try {
     const token = localStorage.getItem('accessToken');
     const github = new Octokat({ 'token': token });
     const markdownPath = `site/content/${filename}.markdown`.toLowerCase();
-  
-    let repo = await github.repos('paulkinlan', 'podcastinabox').fetch();
+    const [user, repoName] = repositoryUrl.split('/');
+
+    if(user === null || repoName === null) {
+      alert('Please specifiy a repo');
+      return;
+    }
+    
+    let repo = await github.repos(user, repoName).fetch();
     let main = await repo.git.refs('heads/master').fetch();
     let treeItems = [];
 
@@ -209,9 +217,21 @@ onload = async () => {
   const stopRecord = document.getElementById('stopRecord');
   const podcastRecordingFile = document.getElementById('podcastrecording');
   const authenticate = document.getElementById('authenticate');
-  
-  if (localStorage.getItem('accessToken') !== null) {
+  const reposEl = document.getElementById('repos');
+  const accessToken = localStorage.getItem('accessToken');
+  let github;
+  if (accessToken !== null) {
     authenticate.style.display = 'none';
+    github = new Octokat({ 'token': accessToken });
+    github.user.repos.fetchAll().then(repos => {
+      const repoFragment = document.createDocumentFragment();
+      repos.forEach(repo => {
+        const option = document.createElement('option');
+        option.value = repo.fullName;
+        repoFragment.appendChild(option);
+      });
+      reposEl.appendChild(repoFragment);
+    });
   }
 
   authenticate.onclick = async () => {
@@ -235,6 +255,9 @@ onload = async () => {
 
   noteForm.onsubmit = async (event) => {
     event.preventDefault();
+
+    const repoEl = document.getElementById('repo');
+    const repo = repoEl.value;
 
     if (recording === undefined) {
       alert('You need to record a file, or provide one');
@@ -280,7 +303,7 @@ webm: /audio/${recording.name.toLowerCase()}.webm
 
 ${main.join('\n')}
 `;
-    createFile(fileName, body, images, cleanName, recording);
+    createFile(repo, fileName, body, images, cleanName, recording);
   };
   populateFields();
 }
