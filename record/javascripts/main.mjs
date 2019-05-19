@@ -85,11 +85,10 @@ const auth = async () => {
   }
 };
 
-const createFile = async (repositoryUrl, filename, data, images, commitMessage, recording) => {
+const createCommit = async (repositoryUrl, filename, data, images, commitMessage, recording) => {
   try {
     const token = localStorage.getItem('accessToken');
     const github = new Octokat({ 'token': token });
-    const markdownPath = `site/content/${filename}.markdown`.toLowerCase();
     const [user, repoName] = repositoryUrl.split('/');
 
     if(user === null || repoName === null) {
@@ -97,6 +96,7 @@ const createFile = async (repositoryUrl, filename, data, images, commitMessage, 
       return;
     }
     
+    const markdownPath = `site/content/${filename}.markdown`.toLowerCase();
     let repo = await github.repos(user, repoName).fetch();
     let main = await repo.git.refs('heads/master').fetch();
     let treeItems = [];
@@ -303,7 +303,7 @@ webm: /audio/${recording.name.toLowerCase()}.webm
 
 ${main.join('\n')}
 `;
-    createFile(repo, fileName, body, images, cleanName, recording);
+    createCommit(repo, fileName, body, images, cleanName, recording);
   };
   populateFields();
 }
