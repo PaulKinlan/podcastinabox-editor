@@ -82,15 +82,8 @@ const auth = async () => {
     return result;
   } catch (error) {
     // Handle Errors here.
-    console.log(error)
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // The email of the user's account used.
-    var email = error.email;
-    // The firebase.auth.AuthCredential type that was used.
-    var credential = error.credential;
-    // ...
-    logToToast(`Unable to login: ${errorMessage}`)
+    console.log(error);
+    logToToast(`Unable to login: ${error.message}`)
   }
 };
 
