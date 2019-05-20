@@ -8,19 +8,7 @@
   <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="styles/main.css">
   <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
-  <script src="/javascripts/editorjs/editor.js"></script>
-  <script src="/javascripts/editorjs/link.js"></script>
-  <script src="/javascripts/editorjs/list.js"></script>
-  <script src="/javascripts/editorjs/header.js"></script>
-  <script src="/javascripts/editorjs/paragraph.js"></script>
-  <script src="/javascripts/editorjs/code.js"></script>
-  <script src="/javascripts/editorjs/simple-image.js"></script>
-  <script src="/javascripts/editorjs/quote.js"></script>
-  <script src="/javascripts/octokat.js"></script>
   <script type="module" src="/javascripts/main.mjs"></script>
-  <style>
-
-  </style>
 </head>
 <body>     
   <form id=noteform>
@@ -38,6 +26,10 @@
       <input type="button" name="startRecord" id="startRecord" value="Record">
       <input type="button" name="stopRecord" id="stopRecord" value="Stop Recording">
       <audio id="podcastPlayback" controls></audio>
+
+      <div id="waveform">
+
+      </div>
     </div>
 
     <br>

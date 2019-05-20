@@ -1,13 +1,22 @@
-const url = new URL(location);
-const description = url.searchParams.get('text');
+import WaveSurfer from 'wavesurfer.js';
+import EditorJS from '@editorjs/editorjs';
+import List from '@editorjs/list';
+import Header from '@editorjs/header';
+import Paragraph from '@editorjs/paragraph';
+import CodeTool from '@editorjs/code';
+import SimpleImage from '@editorjs/simple-image';
+import Quote from '@editorjs/quote';
+import Octokat from 'octokat';
 
 let data = {};
-let editor;
 let config = {
   apiKey: "AIzaSyDCxJm4JBrX2sqRBENPdbeCMYXMXZb1SYc",
   authDomain: "podcastinabox-77f89.firebaseapp.com",
   projectId: "podcastinabox-77f89"
 };
+
+let editor;
+let wavesurfer;
 
 const initEditor = (imageBlob) => {
   const editorElement = document.getElementById('editor');
@@ -200,14 +209,23 @@ const record = async () => {
 };
 
 const updateRecording = (blob) => {
+  if (wavesurfer === undefined) {
+    wavesurfer = WaveSurfer.create({
+      container: '#waveform',
+      waveColor: 'black',
+      interact: false,
+    });
+  }
+
   const reader = new FileReader();
-  reader.readAsDataURL(blob)
+  reader.readAsDataURL(blob);
+  wavesurfer.loadBlob(blob);
   reader.addEventListener('load', () => {
     const url = URL.createObjectURL(blob);
     const podcastPlayback = document.getElementById("podcastPlayback");
     podcastPlayback.src = url;
     recording.blob = blob;
-    recording.data = reader.result;
+    recording.data = reader.result;x
   });
 };
 
