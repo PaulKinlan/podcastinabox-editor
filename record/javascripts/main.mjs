@@ -204,6 +204,7 @@ const record = async () => {
   recorder.onstop = () => {
     const blob = new Blob(blobs, {type: 'audio/webm'});
     updateRecording(blob);
+    stream.getAudioTracks().forEach(track=>track.stop());
   };
   recorder.start();
 };
@@ -225,7 +226,7 @@ const updateRecording = (blob) => {
     const podcastPlayback = document.getElementById("podcastPlayback");
     podcastPlayback.src = url;
     recording.blob = blob;
-    recording.data = reader.result;x
+    recording.data = reader.result;
   });
 };
 
@@ -257,10 +258,14 @@ onload = async () => {
   };
 
   startRecord.addEventListener('click', () => {
+    startRecord.disabled = true;
+    stopRecord.disabled = false;
     record();
   });
 
   stopRecord.addEventListener('click', () => {
+    startRecord.disabled = false;
+    stopRecord.disabled = true;
     if (recorder) {
       recorder.stop();
     }
