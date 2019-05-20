@@ -231,7 +231,9 @@ onload = async () => {
   const authenticate = document.getElementById('authenticate');
   const reposEl = document.getElementById('repos');
   const accessToken = localStorage.getItem('accessToken');
+  let githubRepo = localStorage.getItem('githubRepo');
   let github;
+
   if (accessToken !== null) {
     authenticate.style.display = 'none';
     github = new Octokat({ 'token': accessToken });
@@ -244,6 +246,10 @@ onload = async () => {
       });
       reposEl.appendChild(repoFragment);
     });
+  }
+
+  if (githubRepo !== null) {
+    repoEl.value = githubRepo;
   }
 
   authenticate.onclick = async () => {
@@ -279,6 +285,13 @@ onload = async () => {
       alert('You need to record a file, or provide one');
       return;
     }
+
+    if (repo === undefined || repo === null || repo === "" || repo.indexOf('/') === -1) {
+      alert('You need specify a repo to commit to');
+      return;
+    }
+  
+    localStorage.setItem('githubRepo', repo);
 
     const editorData = await editor.save();
 
