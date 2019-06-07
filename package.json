@@ -24,6 +24,7 @@
     "firebase": "^6.1.1",
     "octokat": "^0.10.0",
     "rollup": "^1.14.3",
+    "rollup-plugin-terser": "^5.0.0",
     "serve": "^11.0.1",
     "wavesurfer.js": "^2.2.1"
   }
