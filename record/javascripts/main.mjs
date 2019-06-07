@@ -73,11 +73,13 @@ const auth = async () => {
 
   try {
     const result = await firebase.auth().signInWithPopup(provider);
-
+    const noteForm = document.getElementById('noteform');
+  
     // This gives you a GitHub Access Token. You can use it to access the GitHub API.
     var token = result.credential.accessToken;
     localStorage.setItem('accessToken', token);
     localStorage.setItem('user', JSON.stringify(result.user.toJSON()));
+    noteform.classList.add('authenticated');
     logToToast(`Welcome ${result.user}`);
     return result;
   } catch (error) {
@@ -230,6 +232,8 @@ onload = async () => {
   const podcastRecordingFile = document.getElementById('podcastrecording');
   const authenticate = document.getElementById('authenticate');
   const reposEl = document.getElementById('repos');
+  const repoEl = document.getElementById('repo');
+
   const accessToken = localStorage.getItem('accessToken');
   let githubRepo = localStorage.getItem('githubRepo');
   let github;
@@ -277,8 +281,6 @@ onload = async () => {
 
   noteForm.onsubmit = async (event) => {
     event.preventDefault();
-
-    const repoEl = document.getElementById('repo');
     const repo = repoEl.value;
 
     if (recording === undefined) {
