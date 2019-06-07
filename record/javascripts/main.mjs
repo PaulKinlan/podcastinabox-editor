@@ -31,7 +31,7 @@ const initEditor = (imageBlob) => {
         }
       }]
     }
-  }
+  };
 
   editor = new EditorJS({
     holderId: 'editor',
@@ -256,7 +256,8 @@ onload = async () => {
     repoEl.value = githubRepo;
   }
 
-  authenticate.onclick = async () => {
+  authenticate.onclick = async (event) => {
+    event.preventDefault();
     await auth();
   };
 
