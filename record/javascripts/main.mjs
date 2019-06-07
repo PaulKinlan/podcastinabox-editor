@@ -8,6 +8,9 @@ import SimpleImage from '@editorjs/simple-image';
 import Quote from '@editorjs/quote';
 import Octokat from 'octokat';
 
+import 'firebase/app';
+import "firebase/auth";
+
 let data = {};
 let config = {
   apiKey: "AIzaSyDCxJm4JBrX2sqRBENPdbeCMYXMXZb1SYc",

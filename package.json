@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "commander": "^2.19.0",
+    "firebase": "^6.1.1",
     "octokat": "^0.10.0",
     "rollup": "^1.14.3",
     "serve": "^11.0.1",
