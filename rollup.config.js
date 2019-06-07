@@ -12,7 +12,7 @@ export default {
   },
   plugins: [ 
     copy({
-      targets: ['record/index.html', 'record/images', 'record/styles','record/javascripts'],
+      targets: ['record/manifest.json','record/index.html', 'record/images', 'record/styles','record/javascripts'],
       outputFolder: 'dist'
     }),
     commonjs({
