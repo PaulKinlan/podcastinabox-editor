@@ -12,11 +12,16 @@
 </head>
 <body>     
   <form id=noteform>
-
     <fieldset class="information">
       <legend>Information</legend>
       <label for="name">Title:</label>
       <input type="text" name="name" id="name">
+      <div id="repositoryInformation">
+        <label for=repo>Repository:</label>
+        <input list="repos" id="repo" name="repo" placeholder="Repository"/>
+       <datalist id="repos"></datalist>
+      </div>
+      <button id=authenticate>Authenticate</button>
     </fieldset>
 
     <fieldset class="recording">
@@ -41,10 +46,6 @@
     </div>
     <input type="submit" value="Save">
   </form>
-  <button id=authenticate>Authenticate</button>
-  <input list="repos" id="repo"  placeholder="Repository"/>
-  <datalist id="repos">
-  </datalist>
   <div id="output"></div>
 </body>
 

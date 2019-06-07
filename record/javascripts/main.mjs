@@ -235,7 +235,7 @@ onload = async () => {
   let github;
 
   if (accessToken !== null) {
-    authenticate.style.display = 'none';
+    noteform.classList.add('authenticated');
     github = new Octokat({ 'token': accessToken });
     github.user.repos.fetchAll().then(repos => {
       const repoFragment = document.createDocumentFragment();

@@ -9,6 +9,18 @@ body {
   width: 100%;
 }
 
+#noteform.authenticated #authenticate {
+  display: none;
+}
+
+#noteform.authenticated #repositoryInformation {
+  display: block;
+}
+
+#noteform:not(.authenticated) #repositoryInformation {
+  display: none;
+}
+
 .codex-editor {
   font-family: sans-serif;
 }
